@@ -1,10 +1,12 @@
-import { ThemeProvider, Typography } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 
 import theme from "./MUI/theme";
 
+import Header from "./components/Header";
+
 function App() {
   return <ThemeProvider theme={theme}>
-    <Typography variant="h1">Hello World!</Typography>
+    <Header />
   </ThemeProvider>
 }
 
