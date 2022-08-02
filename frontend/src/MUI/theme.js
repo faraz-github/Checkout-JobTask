@@ -17,6 +17,9 @@ const theme = createTheme({
         toolbar: {
             minHeight: 100
         }
+    },
+    shape: {
+        borderRadius: 25
     }
 });
 
