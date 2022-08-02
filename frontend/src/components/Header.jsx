@@ -37,6 +37,7 @@ export default function ButtonAppBar() {
                     </Stack>
                 </Toolbar>
             </AppBar>
+            <Box sx={{ minHeight: "50px" }}></Box>
         </Box>
     );
 }
