@@ -11,9 +11,7 @@ const razorpayInstance = new Razorpay({
     key_secret: process.env.RAZORPAY_SECRET
 });
 
-app.get("/", (req, res) => {
-    res.send("Hello World!");
-});
+
 
 app.post("/razorpay", async (req, res) => {
 
