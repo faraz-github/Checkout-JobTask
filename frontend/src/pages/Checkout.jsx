@@ -14,7 +14,7 @@ const loadScript = (src) => {
     return new Promise((resolve) => {
         const script = document.createElement("script");
         script.src = src;
-        
+
         script.onload = () => resolve(true);
         script.onerror = () => resolve(false);
         document.body.appendChild(script);
@@ -34,23 +34,29 @@ function Checkout() {
             return;
         }
 
+        const paymentData = await fetch("/razorpay", { method: "POST" }).then((data) => {
+            data.json();
+        });
+
+        console.log(paymentData);
+
         const options = {
             key: "rzp_test_PqyzTtmpEY8XXt",
-            amount: "500",
-            currency: "INR",
-            name: "Clothing",
-            description: "Simple half sleeves t-shirts for summer",
+            amount: paymentData.amount.toString(),
+            currency: paymentData.currency,
+            order_id: paymentData.id,
+            name: "E-Shop",
+            description: "Order Checkout",
             image: "assets/images/tshirtTwo.jpg",
-            order_id: "",
             handler: function (response) {
                 alert(response.razorpay_payment_id);
                 alert(response.razorpay_order_id);
                 alert(response.razorpay_signature);
             },
-            prefill:{
+            prefill: {
                 name: user
             },
-            theme:{
+            theme: {
                 color: "#7AD0A7"
             }
         }
