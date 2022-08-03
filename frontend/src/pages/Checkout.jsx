@@ -7,7 +7,11 @@ import SectionOne from "../components/SectionOne";
 import SectionTwo from "../components/SectionTwo";
 import SectionThree from "../components/SectionThree";
 
+import { useUser } from "../contexts/UserContext";
+
 function Checkout() {
+
+    const { user } = useUser();
 
     const outlineButtonStyle = {
         color: "common.black",
@@ -40,7 +44,7 @@ function Checkout() {
                 <Button size="large" sx={{ color: "common.black", textTransform: "none" }} startIcon={<ArrowBackIcon />}>Back</Button>
                 <Stack direction={"row"} spacing={1}>
                     <Button size="large" disableElevation variant="outlined" sx={outlineButtonStyle}>Continue Shopping</Button>
-                    <Button size="large" disableElevation variant="contained" color="secondary" sx={{ color: "common.white", fontSize: "0.75rem" }}>Proceed To Payment</Button>
+                    <Button size="large" disabled={user ? false : true} disableElevation variant="contained" color="secondary" sx={{ color: "common.white", fontSize: "0.75rem" }}>Proceed To Payment</Button>
                 </Stack>
             </Box>
         </Container>

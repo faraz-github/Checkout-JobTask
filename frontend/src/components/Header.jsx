@@ -1,11 +1,24 @@
-import { AppBar, Box, Toolbar, Typography, IconButton, Stack } from '@mui/material';
+import { AppBar, Box, Toolbar, Typography, IconButton, Stack, Avatar } from '@mui/material';
 import StoreIcon from '@mui/icons-material/Store';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
+import { useUser } from '../contexts/UserContext';
+
 export default function ButtonAppBar() {
-    
+
+    const { user, setUser } = useUser();
+
+    const logoutUser = () => {
+        if (user) {
+            setUser(null);
+            alert("Logout Successful!")
+        } else {
+            return;
+        }
+    }
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" elevation={0} sx={{ borderBottom: "2px solid #F3F3F3" }}>
@@ -25,16 +38,21 @@ export default function ButtonAppBar() {
                             Kids
                         </Typography>
                     </Stack>
-                    <Stack direction={"row"}>
-                        <IconButton size='large'>
+                    <Stack direction={"row"} spacing={1}>
+                        <IconButton>
                             <SearchIcon fontSize='inherit' sx={{ color: "common.black" }} />
                         </IconButton>
-                        <IconButton size='large'>
+                        <IconButton>
                             <ShoppingCartOutlinedIcon fontSize='inherit' sx={{ color: "common.black" }} />
                         </IconButton>
-                        <IconButton size='large'>
-                            <PersonOutlineOutlinedIcon fontSize='inherit' sx={{ color: "common.black" }} />
-                        </IconButton>
+                        {
+                            user
+                                ? <Avatar sx={{ bgcolor: "orange", cursor: "pointer" }} onClick={logoutUser}>U</Avatar>
+                                : <IconButton disabled>
+                                    <PersonOutlineOutlinedIcon fontSize='inherit' sx={{ color: "common.black" }} />
+                                </IconButton>
+
+                        }
                     </Stack>
                 </Toolbar>
             </AppBar>

@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@mui/material";
+import { UserProvider } from "./contexts/UserContext";
 
 import theme from "./MUI/theme";
 
@@ -8,8 +9,10 @@ import Checkout from "./pages/Checkout";
 
 function App() {
   return <ThemeProvider theme={theme}>
-    <Header />
-    <Checkout />
+    <UserProvider>
+      <Header />
+      <Checkout />
+    </UserProvider>
   </ThemeProvider>
 }
 

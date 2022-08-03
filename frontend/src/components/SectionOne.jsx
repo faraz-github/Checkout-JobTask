@@ -1,8 +1,21 @@
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
+import { useUser } from "../contexts/UserContext";
+
 import SelectionTextField from "./SelectionTextField";
 
 function SectionOne() {
+
+    const { user, setUser } = useUser();
+
+    const loginUser = () => {
+        if (!user) {
+            setUser("User");
+            alert("Login Successful!")
+        } else {
+            return;
+        }
+    }
 
     const inputStyle = {
         "& input::placeholder": { fontSize: "14px" }
@@ -19,7 +32,7 @@ function SectionOne() {
     return (
         <Box sx={{ pr: 5, pb: 5 }}>
             <Stack direction={"row"} spacing={2}>
-                <Button disableElevation size="large" variant="contained" color="secondary" sx={{ color: "common.white", fontSize: "0.75rem" }}>Log In</Button>
+                <Button disabled={user ? true : false} onClick={loginUser} disableElevation size="large" variant="contained" color="secondary" sx={{ color: "common.white", fontSize: "0.75rem" }}>Log In</Button>
                 <Button disableElevation size="large" variant="outlined" sx={outlineButtonStyle}>Sign Up</Button>
             </Stack>
             <Box sx={{ minHeight: "25px" }}></Box>
