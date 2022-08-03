@@ -10,7 +10,7 @@ function SectionOne() {
 
     const loginUser = () => {
         if (!user) {
-            setUser("User");
+            setUser("John Doe");
             alert("Login Successful!")
         } else {
             return;

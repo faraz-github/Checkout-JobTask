@@ -20,20 +20,20 @@ app.post("/razorpay", async (req, res) => {
 
     const dollarInRupees = 79.16;
     const totalCost = 159.98;
-    const amount = totalCost * dollarInRupees;
+    const amount = Math.floor(totalCost * dollarInRupees);
 
     const currency = "INR"
 
     const options = {
-        amount: amount * 100,
-        currency,
+        amount: (amount * 100),
+        currency: currency,
         receipt: shortid.generate(),
-        payment_capture
+        payment_capture: payment_capture
     }
 
     try {
         const response = await razorpayInstance.orders.create(options);
-        console.log(response);
+        // console.log(response); Debug Log
         res.json({
             id: response.id,
             currency: response.currency,

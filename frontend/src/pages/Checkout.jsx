@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import { Container } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -34,35 +36,45 @@ function Checkout() {
             return;
         }
 
-        const paymentData = await fetch("/razorpay", { method: "POST" }).then((data) => {
-            data.json();
-        });
+        try {
+            const response = await axios.post("/razorpay");
+            if (response.data) {
+                console.log(response.data);
+                const options = {
+                    key: "rzp_test_PqyzTtmpEY8XXt",
+                    amount: response.data.amount.toString(),
+                    currency: response.data.currency,
+                    order_id: response.data.id,
+                    name: "E-Shop",
+                    description: "Order Checkout",
+                    image: "assets/images/tshirtTwo.jpg",
+                    handler: function (response) {
+                        alert(response.razorpay_payment_id);
+                        alert(response.razorpay_order_id);
+                        alert(response.razorpay_signature);
+                    },
+                    prefill: {
+                        name: user
+                    },
+                    theme: {
+                        color: "#7AD0A7"
+                    }
+                }
 
-        console.log(paymentData);
-
-        const options = {
-            key: "rzp_test_PqyzTtmpEY8XXt",
-            amount: paymentData.amount.toString(),
-            currency: paymentData.currency,
-            order_id: paymentData.id,
-            name: "E-Shop",
-            description: "Order Checkout",
-            image: "assets/images/tshirtTwo.jpg",
-            handler: function (response) {
-                alert(response.razorpay_payment_id);
-                alert(response.razorpay_order_id);
-                alert(response.razorpay_signature);
-            },
-            prefill: {
-                name: user
-            },
-            theme: {
-                color: "#7AD0A7"
+                const paymentObject = new window.Razorpay(options);
+                paymentObject.open();
             }
+        } catch (error) {
+            console.log(error);
         }
 
-        const paymentObject = new window.Razorpay(options);
-        paymentObject.open();
+        // const data = await fetch("/razorpay", { method: "POST" }).then((t) => {
+        //     t.json();
+        // });
+
+        // console.log(data);
+
+
 
     }
 

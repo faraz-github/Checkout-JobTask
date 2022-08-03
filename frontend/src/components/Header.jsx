@@ -47,7 +47,7 @@ export default function ButtonAppBar() {
                         </IconButton>
                         {
                             user
-                                ? <Avatar sx={{ bgcolor: "orange", cursor: "pointer" }} onClick={logoutUser}>U</Avatar>
+                                ? <Avatar sx={{ bgcolor: "#FCCB83", cursor: "pointer", color:"common.black" }} onClick={logoutUser}>J</Avatar>
                                 : <IconButton disabled>
                                     <PersonOutlineOutlinedIcon fontSize='inherit' sx={{ color: "common.black" }} />
                                 </IconButton>
