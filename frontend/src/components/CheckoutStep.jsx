@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { Box, Step, Stepper, IconButton } from '@mui/material';
-
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 

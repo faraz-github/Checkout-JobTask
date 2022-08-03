@@ -5,6 +5,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 export default function ButtonAppBar() {
+    
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" elevation={0} sx={{ borderBottom: "2px solid #F3F3F3" }}>

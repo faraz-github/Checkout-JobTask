@@ -38,7 +38,6 @@ function PaymentMethod() {
                 </Paper>
             </Stack>
         </Stack>
-
     )
 }
 

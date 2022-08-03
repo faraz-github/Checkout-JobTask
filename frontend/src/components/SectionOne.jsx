@@ -43,7 +43,6 @@ function SectionOne() {
                     <SelectionTextField />
                 </Stack>
             </Stack>
-
         </Box>
     )
 }

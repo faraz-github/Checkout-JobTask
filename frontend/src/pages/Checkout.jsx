@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
-import { Container } from "@mui/system";
+import { Container } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import CheckoutStep from "../components/CheckoutStep";
